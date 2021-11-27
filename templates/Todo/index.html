@@ -1,4 +1,5 @@
 {% extends 'Todo/base.html' %}
+{% load custom_tags %}
 
 {% block head %}
     <title>Todo</title>
@@ -28,7 +29,7 @@
                     {% endif %}
                                 <h5 class="fw-bolder mb-0">{{ task.task_name }}</h5>
                                 <p>Created at: {{ task.created_at }}</p>
-                                {% if task.created_at < task.updated_at %}
+                                {% if task.updated_at|subtractor:task.created_at %}
                                     <p>updated at: {{ task.updated_at }}</p>
                                 {% endif %}
                             </div>
