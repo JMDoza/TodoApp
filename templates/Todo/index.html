@@ -1,0 +1,49 @@
+{% extends 'Todo/base.html' %}
+
+{% block head %}
+    <title>Todo</title>
+{% endblock %}
+
+{% block body %}
+
+        <form class="row pb-1" action="" method="post">
+            <div class="col-11 col-md-10 col-lg-8 px-0 mx-auto">
+                <div class="input-group">
+                    {% csrf_token %}
+                    <input class="form-control" type="text" placeholder="Add Tasks" name="task">
+                    <input class="btn btn-primary" type="submit" value="ADD">
+                </div>
+            </div>
+        </form>
+
+        {% for task in tasks %}
+            <div class="row pt-3">
+                <div class="col-11 col-md-10 col-lg-8  mx-auto">
+                    {% if task.completed %}
+                        <div class="row task_border completed">
+                            <div class="col-11 col-md-4 col-lg-6 text-decoration-line-through opacity-50">
+                    {% else %}
+                        <div class="row task_border bg-white">
+                            <div class="col-11 col-md-4 col-lg-6">
+                    {% endif %}
+                                <h5 class="fw-bolder mb-0">{{ task.task_name }}</h5>
+                                <p>Created at: {{ task.created_at }}</p>
+                                {% if task.created_at < task.updated_at %}
+                                    <p>updated at: {{ task.updated_at }}</p>
+                                {% endif %}
+                            </div>
+                            <form class="col-11 col-md-8 col-lg-6 text-md-end" action="" method="post">
+                            {% csrf_token %}
+                                {% if not task.completed %}
+                                    <button class="btn btn-success" type="submit" name="completed" value="{{ task.id }}">Completed</button>
+                                {% endif %}
+                                <a href="{% url 'update_task' task.id %}" class="btn btn-primary">Update</a>
+                                <a href="{% url 'delete_task' task.id %}" class="btn btn-danger">Delete</a>
+
+                            </form>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'Todo/base.html' %}
+
+{% block head %}
+    <title>Todo</title>
+{% endblock %}
+
+{% block body %}
+
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-9 card px-0">
+              <div class="card-header fw-bold">
+                Delete Task
+              </div>
+              <div class="card-body">
+                  <h5 class="fw-bold">Are you sure you want to delete <span class="delete fs-5 fw-bold">{{ task.task_name }}</span></h5>
+
+                    <form method="post" action="">
+                    {% csrf_token %}
+                        <div class="my-3">
+                            <a href="{% url 'index' %}" class="btn btn-info text-white">No, go back</a>
+                            <input type="submit" class="btn btn-danger" value="Yes, Delete"></input>
+                        </div>
+                    </form>
+              </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

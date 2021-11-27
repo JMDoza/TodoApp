@@ -1,0 +1,32 @@
+body {
+    background-color: #fafafa
+}
+
+.task_border {
+    border-style: solid;
+    border-color: silver;
+    border-radius: 0.25rem;
+    border-width: 1px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.created_at {
+    font-size: 0.7rem;
+}
+
+.completed {
+    background-color: lightgray;
+}
+
+.not_completed {
+    background-color: white;
+}
+
+.delete {
+    color: #fe6993;
+    background-color:  rgba(254, 105, 147, 0.1);
+    border-radius: 3px;
+    padding: 0.2em;
+    line-height: 2em;
+}
